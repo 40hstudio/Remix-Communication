@@ -1,11 +1,25 @@
-import gsap from "gsap";
+import homeAnimation from "./pages/home.js";
+import aboutAnimation from "./pages/about.js";
 
-console.log("🚀 Webflow Custom Code Loaded");
+import Lenis from "lenis";
 
-// Your GSAP animations and custom code here
-gsap.from([".hero-title", ".hero-title + p"], {
-	opacity: 0,
-	y: 50,
-	duration: 1,
-	ease: "power3.out",
+let lenis = new Lenis({
+	lerp: 0.1,
+	wheelMultiplier: 0.7,
+	gestureOrientation: "vertical",
+	normalizeWheel: false,
+	smoothTouch: false,
 });
+function raf(time) {
+	lenis.raf(time);
+	requestAnimationFrame(raf);
+}
+
+requestAnimationFrame(raf);
+
+function initAnimations() {
+	homeAnimation();
+	aboutAnimation();
+}
+
+window.addEventListener("load", initAnimations);
