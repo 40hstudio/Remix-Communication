@@ -1,3 +1,31 @@
+.voice_item {
+  opacity: 0.5;
+  padding-bottom: calc(-3rem - 3rem - 3rem);
+  overflow: hidden;
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+.voice_item.is-active {
+  opacity: 1;
+  padding-bottom: 3rem;
+}
+
+.voice_item .button_main_wrap {
+  opacity: 0;
+  max-height: 0;
+
+  transition: all 0.3s ease;
+}
+
+.voice_item.is-active .button_main_wrap {
+  opacity: 1;
+  max-height: none;
+
+  transition-delay: 0.3s;
+}
+
 @media screen and (min-width: 1241px) {
   .marquee_list[aria-hidden="true"] {
     display: none;
@@ -13,8 +41,9 @@
 
   .marquee_list {
     display: flex;
-    gap: 1rem;
+    /* gap: 1rem; */
     flex-shrink: 0;
+    width: max-content !important;
 
     animation-duration: 30s;
     animation-iteration-count: infinite;
