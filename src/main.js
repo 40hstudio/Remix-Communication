@@ -1,5 +1,9 @@
 import homeAnimation from "./pages/home.js";
 import aboutAnimation from "./pages/about.js";
+import servicesAnimation from "./pages/services.js";
+
+// --- Utils ---
+import { loadRiveAnimation } from "./utils/rive.js";
 
 import Lenis from "lenis";
 
@@ -20,6 +24,8 @@ requestAnimationFrame(raf);
 function initAnimations() {
 	homeAnimation();
 	aboutAnimation();
+	loadRiveAnimation();
+	servicesAnimation();
 }
 
 window.addEventListener("load", initAnimations);

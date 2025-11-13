@@ -30,41 +30,26 @@ function countAnimation() {
     });
 }
 
-function duplicateMarquee() {
-    const originalMarquee = document.querySelector('.marquee_list');
+function voiceActiveHandler() {
+    const voiceElements = document.querySelectorAll('.voice_item');
 
-    if (!originalMarquee) {
-        console.warn('.marquee_list not found');
+    if (!voiceElements || voiceElements.length === 0) {
+        console.warn('Tidak ada elemen .voice_item yang ditemukan.');
         return;
     }
 
-    let duplicatedMarquee = null;
+    voiceElements.forEach((clickedElement) => {
+        clickedElement.addEventListener('click', () => {
+            voiceElements.forEach((el) => {
+                el.classList.remove('is-active');
+            });
 
-    const mediaQuery = window.matchMedia('(max-width: 1240px)');
-
-    const handleMediaChange = (event) => {
-        if (event.matches) {
-            if (!duplicatedMarquee) {
-                duplicatedMarquee = originalMarquee.cloneNode(true);
-
-                duplicatedMarquee.classList.add('marquee_duplicate');
-
-                originalMarquee.after(duplicatedMarquee);
-            }
-        } else {
-            if (duplicatedMarquee) {
-                duplicatedMarquee.remove();
-                duplicatedMarquee = null;
-            }
-        }
-    };
-
-    mediaQuery.addEventListener('change', handleMediaChange);
-
-    handleMediaChange(mediaQuery);
+            clickedElement.classList.add('is-active');
+        });
+    });
 }
 
 export default function homeAnimation() {
-    // duplicateMarquee();
+    voiceActiveHandler();
     countAnimation();
 }
