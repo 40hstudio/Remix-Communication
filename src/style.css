@@ -1,0 +1,81 @@
+/* parallax effect */
+[data-scrub-animation="parallax"],
+[data-scrub-animation="slow-zoom"] {
+  overflow: clipt;
+}
+
+[data-scrub-animation="parallax"] img,
+[data-scrub-animation="slow-zoom"] img {
+  transform: scale(1.05);
+  will-change: transform;
+}
+
+/* end */
+
+.voice_item {
+  opacity: 0.5;
+  padding-bottom: calc(-3rem - 3rem - 3rem);
+  overflow: hidden;
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+.voice_item.is-active {
+  opacity: 1;
+  padding-bottom: 3rem;
+}
+
+.voice_item .button_main_wrap {
+  opacity: 0;
+  max-height: 0;
+
+  transition: all 0.3s ease;
+}
+
+.voice_item.is-active .button_main_wrap {
+  opacity: 1;
+  max-height: none;
+
+  transition-delay: 0.3s;
+}
+
+@media screen and (min-width: 1241px) {
+  .marquee_list[aria-hidden="true"] {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1240px) {
+  .marquee {
+    display: flex;
+    /* overflow: hidden; */
+    gap: 1rem;
+  }
+
+  .marquee_list {
+    display: flex;
+    /* gap: 1rem; */
+    flex-shrink: 0;
+    width: max-content !important;
+
+    animation-duration: 30s;
+    animation-iteration-count: infinite;
+    animation-name: marquee-content;
+    animation-timing-function: linear;
+  }
+
+  /* .marquee:hover .marquee_list {
+    animation-play-state: paused;
+  } */
+}
+
+@keyframes marquee-content {
+  from {
+    transform: translateX(0%);
+  }
+
+  to {
+    transform: translateX(calc(-100% - 1rem));
+  }
+}

@@ -1,11 +1,14 @@
+//--- Libraries ---
+import Lenis from "lenis";
+
+// --- Page Animations ---
 import homeAnimation from "./pages/home.js";
 import aboutAnimation from "./pages/about.js";
 import servicesAnimation from "./pages/services.js";
 
 // --- Utils ---
 import { loadRiveAnimation } from "./utils/rive.js";
-
-import Lenis from "lenis";
+import initGlobalAnimations from "./utils/global.js";
 
 let lenis = new Lenis({
 	lerp: 0.1,
@@ -21,11 +24,30 @@ function raf(time) {
 
 requestAnimationFrame(raf);
 
+$("[data-lenis-start]").on("click", function () {
+	lenis.start();
+});
+
+$("[data-lenis-stop]").on("click", function () {
+	lenis.stop();
+});
+
+$("[data-lenis-toggle]").on("click", function () {
+	$(this).toggleClass("stop-scroll");
+	if ($(this).hasClass("stop-scroll")) {
+		lenis.stop();
+	} else {
+		lenis.start();
+	}
+});
+
+
 function initAnimations() {
 	homeAnimation();
 	aboutAnimation();
 	loadRiveAnimation();
 	servicesAnimation();
+	initGlobalAnimations();
 }
 
 window.addEventListener("load", initAnimations);
