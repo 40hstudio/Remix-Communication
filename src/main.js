@@ -19,12 +19,12 @@ let lenis = new Lenis({
 	autoRaf: true
 });
 
-function raf(time) {
-	lenis.raf(time);
-	requestAnimationFrame(raf);
-}
+// function raf(time) {
+// 	lenis.raf(time);
+// 	requestAnimationFrame(raf);
+// }
 
-requestAnimationFrame(raf);
+// requestAnimationFrame(raf);
 
 $("[data-lenis-start]").on("click", function () {
 	lenis.start();
