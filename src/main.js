@@ -11,20 +11,24 @@ import { loadRiveAnimation } from "./utils/rive.js";
 import initGlobalAnimations from "./utils/global.js";
 
 let lenis = new Lenis({
-	// lerp: 0.1,
-	// wheelMultiplier: 0.7,
-	// gestureOrientation: "vertical",
-	// normalizeWheel: false,
-	// smoothTouch: false,
+	lerp: 0.1,
+	wheelMultiplier: 0.7,
+	gestureOrientation: "vertical",
+	normalizeWheel: false,
+	smoothTouch: false,
 	autoRaf: true
 });
 
-// function raf(time) {
-// 	lenis.raf(time);
-// 	requestAnimationFrame(raf);
-// }
+window.lenis = lenis;
 
-// requestAnimationFrame(raf);
+function raf(time) {
+	lenis.raf(time);
+	requestAnimationFrame(raf);
+}
+
+requestAnimationFrame(raf);
+
+
 
 $("[data-lenis-start]").on("click", function () {
 	lenis.start();
@@ -43,6 +47,26 @@ $("[data-lenis-toggle]").on("click", function () {
 	}
 });
 
+
+window.fsAttributes = window.fsAttributes || [];
+window.fsAttributes.push([
+	'cmsload',
+	(listInstances) => {
+		console.log('CMS Load Successfully loaded!');
+
+		const [listInstance] = listInstances;
+
+		listInstance.on('renderitems', (renderedItems) => {
+
+			setTimeout(() => {
+				if (window.lenis) {
+					window.lenis.resize();
+				}
+			}, 200);
+
+		});
+	},
+]);
 
 function initAnimations() {
 	homeAnimation();
