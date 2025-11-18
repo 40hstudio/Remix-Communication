@@ -16,6 +16,7 @@ let lenis = new Lenis({
 	// gestureOrientation: "vertical",
 	// normalizeWheel: false,
 	// smoothTouch: false,
+	autoRaf: true
 });
 
 function raf(time) {
