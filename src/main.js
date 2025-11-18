@@ -28,8 +28,6 @@ function raf(time) {
 
 requestAnimationFrame(raf);
 
-
-
 $("[data-lenis-start]").on("click", function () {
 	lenis.start();
 });
@@ -47,26 +45,26 @@ $("[data-lenis-toggle]").on("click", function () {
 	}
 });
 
+function handleLoadMore() {
+	const loadMoreBtn = document.querySelector('[data-button="load-more"]');
 
-window.fsAttributes = window.fsAttributes || [];
-window.fsAttributes.push([
-	'cmsload',
-	(listInstances) => {
-		console.log('CMS Load Successfully loaded!');
+	if (loadMoreBtn) {
+		loadMoreBtn.addEventListener("click", function () {
+			console.log("Load more clicked, waiting for content...");
 
-		const [listInstance] = listInstances;
-
-		listInstance.on('renderitems', (renderedItems) => {
+			setTimeout(() => {
+				if (window.lenis) window.lenis.resize();
+			}, 500);
 
 			setTimeout(() => {
 				if (window.lenis) {
 					window.lenis.resize();
+					console.log("Lenis resized final");
 				}
-			}, 200);
-
+			}, 1000);
 		});
-	},
-]);
+	}
+}
 
 function initAnimations() {
 	homeAnimation();
@@ -74,6 +72,7 @@ function initAnimations() {
 	loadRiveAnimation();
 	servicesAnimation();
 	initGlobalAnimations();
+	handleLoadMore();
 }
 
 window.addEventListener("load", initAnimations);
