@@ -75,4 +75,4 @@ function initAnimations() {
 	handleLoadMore();
 }
 
-window.addEventListener("load", initAnimations);
+document.addEventListener("DOMContentLoaded", initAnimations);
