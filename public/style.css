@@ -12,32 +12,26 @@
 
 /* end */
 
-.voice_item {
-  opacity: 0.5;
-  padding-bottom: calc(-3rem - 3rem - 3rem);
-  overflow: hidden;
-  cursor: pointer;
+@media screen and (min-width: 992px) {
+  .voice_item {
+    display: grid;
+    padding-bottom: calc(-3rem - 3rem);
+    grid-template-rows: max-content 0fr;
+    opacity: 0.5;
 
-  transition: all 0.3s ease;
-}
+    transition: grid-template-rows 0.5s ease, opacity 0.5s ease;
+  }
 
-.voice_item.is-active {
-  opacity: 1;
-  padding-bottom: 3rem;
-}
+  .voice_content_wrap {
+    height: 100%;
+    overflow: hidden;
+  }
 
-.voice_item .button_main_wrap {
-  opacity: 0;
-  max-height: 0;
-
-  transition: all 0.3s ease;
-}
-
-.voice_item.is-active .button_main_wrap {
-  opacity: 1;
-  max-height: none;
-
-  transition-delay: 0.3s;
+  .voice_item.is-active {
+    padding-bottom: 3rem;
+    grid-template-rows: max-content 1fr;
+    opacity: 1;
+  }
 }
 
 @media screen and (min-width: 1241px) {

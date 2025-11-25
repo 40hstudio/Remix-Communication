@@ -122,21 +122,85 @@ function countAnimation() {
     });
 }
 
+// function voiceActiveHandler() {
+//     const voiceElements = document.querySelectorAll('.voice_item');
+
+//     if (!voiceElements || voiceElements.length === 0) {
+//         console.warn('Tidak ada elemen .voice_item yang ditemukan.');
+//         return;
+//     }
+
+//     voiceElements.forEach((clickedElement) => {
+//         clickedElement.addEventListener('click', () => {
+//             voiceElements.forEach((el) => {
+//                 el.classList.remove('is-active');
+//             });
+
+//             clickedElement.classList.add('is-active');
+//         });
+//     });
+// }
+
+// function voiceActiveHandler() {
+//     const section = document.querySelector('.voice_wrap');
+//     const items = gsap.utils.toArray('.voice_item');
+
+//     if (!section || items.length === 0) return;
+
+//     ScrollTrigger.create({
+//         trigger: section,
+//         start: "top top",
+//         end: `+=${items.length * 100}vh`,
+//         // pin: true,
+//         scrub: true,
+//     });
+
+//     items.forEach((item, index) => {
+//         ScrollTrigger.create({
+//             trigger: section,
+//             start: () => "top top-=" + (index * window.innerHeight),
+//             end: () => "+=" + window.innerHeight,
+//             toggleClass: { targets: item, className: "is-active" },
+//             // markers: true,
+//         });
+//     });
+// }
 function voiceActiveHandler() {
-    const voiceElements = document.querySelectorAll('.voice_item');
+    const section = document.querySelector('.voice_wrap');
+    const items = gsap.utils.toArray('.voice_item');
 
-    if (!voiceElements || voiceElements.length === 0) {
-        console.warn('Tidak ada elemen .voice_item yang ditemukan.');
-        return;
-    }
+    // const desktop = window.innerWidth < 991;
 
-    voiceElements.forEach((clickedElement) => {
-        clickedElement.addEventListener('click', () => {
-            voiceElements.forEach((el) => {
-                el.classList.remove('is-active');
-            });
+    if (!section || items.length === 0) return;
 
-            clickedElement.classList.add('is-active');
+    items[0].classList.add('is-active');
+
+    ScrollTrigger.create({
+        trigger: section,
+        start: "top top",
+        end: `+=${items.length * 100}vh`,
+        // pin: true, 
+        scrub: true,
+    });
+
+    items.forEach((item, index) => {
+        ScrollTrigger.create({
+            trigger: section,
+            start: () => "top top-=" + (index * window.innerHeight),
+            end: () => "+=" + window.innerHeight,
+
+            onToggle: (self) => {
+                if (self.isActive) {
+                    item.classList.add("is-active");
+                } else {
+                    const isFirstAtTop = index === 0 && self.progress === 0;
+                    const isLastAtBottom = index === items.length - 1 && self.progress === 1;
+
+                    if (!isFirstAtTop && !isLastAtBottom) {
+                        item.classList.remove("is-active");
+                    }
+                }
+            }
         });
     });
 }

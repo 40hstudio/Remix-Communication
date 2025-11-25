@@ -28,6 +28,8 @@ function raf(time) {
 
 requestAnimationFrame(raf);
 
+lenis.scrollTo(0);
+
 $("[data-lenis-start]").on("click", function () {
 	lenis.start();
 });
