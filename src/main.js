@@ -1,5 +1,9 @@
 //--- Libraries ---
 import Lenis from "lenis";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
+
+gsap.registerPlugin(ScrollTrigger);
 
 // --- Page Animations ---
 import homeAnimation from "./pages/home.js";
@@ -68,6 +72,20 @@ function handleLoadMore() {
 	}
 }
 
+function navbar() {
+	const darkSections = gsap.utils.toArray('.u-theme-dark');
+
+	darkSections.forEach(section => {
+		ScrollTrigger.create({
+			trigger: section,
+			start: "top 10%",
+			end: "bottom 10%",
+			toggleClass: { targets: ".nav_component", className: "is-light-text" },
+			// markers: true
+		});
+	});
+}
+
 function initAnimations() {
 	homeAnimation();
 	aboutAnimation();
@@ -75,6 +93,7 @@ function initAnimations() {
 	servicesAnimation();
 	initGlobalAnimations();
 	handleLoadMore();
+	navbar();
 }
 
 document.addEventListener("DOMContentLoaded", initAnimations);
