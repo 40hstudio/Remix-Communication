@@ -67,8 +67,8 @@ function heroAnimation() {
 
         tl.to(allItems[3], { height: "100%" })
             .to(container, { gap: isDesktop ? "1rem" : "0.5rem" }, ">")
-            .to(containerLeft, { width: isDesktop ? "100%" : "80%" }, "<")
-            .to(containerRight, { width: isDesktop ? "100%" : "20%" }, "<")
+            .to(containerLeft, { width: isDesktop ? "100%" : "100%" }, "<")
+            .to(containerRight, { width: isDesktop ? "100%" : "0%" }, "<")
             .to(containerLeft, { gap: isDesktop ? "1rem" : "0.5rem" }, ">")
             .to(allItems[0], { height: "100%" }, "<")
             .to(allItems[2], { height: "100%" }, "<")

@@ -70,9 +70,9 @@ function heroAnimation() {
             .to(container, { gap: isDesktop ? "1rem" : "0.5rem" }, "<")
             .to(containerBottom, { height: isDesktop ? "50%" : "60%" }, "<")
             .to(allItems[2], { width: "100%" }, "<")
-            .to(allItems[2], { width: isDesktop ? "50%" : "20%" }, ">")
+            .to(allItems[2], { width: isDesktop ? "50%" : "0%" }, ">")
             .to(containerBottom, { gap: isDesktop ? "1rem" : "0.5rem" }, "<")
-            .to(containerleft, { width: isDesktop ? "50%" : "80%" }, "<")
+            .to(containerleft, { width: isDesktop ? "50%" : "100%" }, "<")
             .to(textAnimItems.flat(), {
                 y: "0%",
                 autoAlpha: 1,
