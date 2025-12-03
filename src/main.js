@@ -73,15 +73,21 @@ function handleLoadMore() {
 }
 
 function navbar() {
-	const darkSections = gsap.utils.toArray('.u-theme-dark');
+	const nav = document.querySelector('.nav_component');
+	const lightSections = gsap.utils.toArray('.u-theme-light');
 
-	darkSections.forEach(section => {
+	lightSections.forEach(section => {
 		ScrollTrigger.create({
 			trigger: section,
 			start: "top 10%",
 			end: "bottom 10%",
-			toggleClass: { targets: ".nav_component", className: "is-light-text" },
-			// markers: true
+			onToggle: (self) => {
+				if (self.isActive) {
+					nav.classList.remove("is-light-text");
+				} else {
+					nav.classList.add("is-light-text");
+				}
+			}
 		});
 	});
 }
