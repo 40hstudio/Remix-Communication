@@ -79,8 +79,8 @@ function navbar() {
 	lightSections.forEach(section => {
 		ScrollTrigger.create({
 			trigger: section,
-			start: "top start",
-			end: "bottom 10%",
+			start: "10% start",
+			end: "bottom 20%",
 			onToggle: (self) => {
 				if (self.isActive) {
 					nav.classList.remove("is-light-text");
