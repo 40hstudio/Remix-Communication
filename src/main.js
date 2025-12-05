@@ -79,7 +79,7 @@ function navbar() {
 	lightSections.forEach(section => {
 		ScrollTrigger.create({
 			trigger: section,
-			start: "top 10%",
+			start: "top start",
 			end: "bottom 10%",
 			onToggle: (self) => {
 				if (self.isActive) {
