@@ -74,22 +74,26 @@ function handleLoadMore() {
 
 function navbar() {
 	const nav = document.querySelector('.nav_component');
-	const firstSection = document.querySelector('section');
+	const lightSections = gsap.utils.toArray('.u-theme-light');
 
-	if (firstSection) {
+	lightSections.forEach(section => {
 		ScrollTrigger.create({
-			trigger: firstSection,
-			start: "start start",
+			trigger: section,
+			start: "10% start",
 			end: "bottom 10%",
 			onToggle: (self) => {
 				if (self.isActive) {
-					nav.classList.add("is-light-text");
-				} else {
 					nav.classList.remove("is-light-text");
+				} else {
+					if (self.progress === 1) {
+						nav.classList.add("is-light-text");
+					} else {
+						nav.classList.remove("is-light-text");
+					}
 				}
 			}
 		});
-	}
+	});
 }
 
 function initAnimations() {
