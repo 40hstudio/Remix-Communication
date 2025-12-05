@@ -74,22 +74,22 @@ function handleLoadMore() {
 
 function navbar() {
 	const nav = document.querySelector('.nav_component');
-	const lightSections = gsap.utils.toArray('.u-theme-light');
+	const firstSection = document.querySelector('section');
 
-	lightSections.forEach(section => {
+	if (firstSection) {
 		ScrollTrigger.create({
-			trigger: section,
-			start: "10% start",
-			end: "bottom 20%",
+			trigger: firstSection,
+			start: "start start",
+			end: "bottom 10%",
 			onToggle: (self) => {
 				if (self.isActive) {
-					nav.classList.remove("is-light-text");
-				} else {
 					nav.classList.add("is-light-text");
+				} else {
+					nav.classList.remove("is-light-text");
 				}
 			}
 		});
-	});
+	}
 }
 
 function initAnimations() {
